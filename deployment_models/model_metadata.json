@@ -1,0 +1,19 @@
+{
+  "test_accuracy": 0.8351851851851851,
+  "model_type": "ViT + Linear Kernel GP",
+  "num_train_samples": 200,
+  "num_test_samples": 2700,
+  "kernel": "DotProduct (Linear)",
+  "class_names": [
+    "AnnualCrop",
+    "Forest",
+    "HerbaceousVegetation",
+    "Highway",
+    "Industrial",
+    "Pasture",
+    "PermanentCrop",
+    "Residential",
+    "River",
+    "SeaLake"
+  ]
+}
