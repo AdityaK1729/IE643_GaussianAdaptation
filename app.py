@@ -12,6 +12,7 @@ import numpy as np
 from PIL import Image
 import pickle
 from transformers import ViTImageProcessor, ViTForImageClassification
+from huggingface_hub import hf_hub_download
 
 # Page config
 st.set_page_config(
@@ -31,17 +32,17 @@ CLASS_NAMES = [
 def load_models():
     """Load all models (cached for performance)"""
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    
+    HF_REPO_ID = "AdityaK1729/VIT" 
     # Load ViT for direct classification
-    vit_model = ViTForImageClassification.from_pretrained('deployment_models/vit_model')
+    vit_model = ViTForImageClassification.from_pretrained(HF_REPO_ID)
     vit_model.to(device)
     vit_model.eval()
     
     # Load processor
-    processor = ViTImageProcessor.from_pretrained('deployment_models/vit_model')
+    processor = ViTImageProcessor.from_pretrained(HF_REPO_ID)
     
     # Load embedding extractor (ViT without head)
-    embed_model = ViTForImageClassification.from_pretrained('deployment_models/vit_model')
+    embed_model = ViTForImageClassification.from_pretrained(HF_REPO_ID)
     embed_model.classifier = torch.nn.Identity()
     embed_model.to(device)
     embed_model.eval()
